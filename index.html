@@ -249,33 +249,4 @@
 
         let checkedStatus = JSON.parse(localStorage.getItem('kanto_checklist') || '{}');
 
-        function renderChecklist() {
-            const container = document.getElementById('checklistContainer');
-            let completedCount = 0;
-
-            container.innerHTML = items.map((item, index) => {
-                const isChecked = !!checkedStatus[index];
-                if (isChecked) completedCount++;
-                return `
-                    <label class="checklist-item ${isChecked ? 'checked' : ''}">
-                        <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleItem(${index})">
-                        <span>${item}</span>
-                    </label>
-                `;
-            }).join('');
-
-            const percent = Math.round((completedCount / items.length) * 100);
-            document.getElementById('progressText').innerText = `${completedCount} / ${items.length} (${percent}%)`;
-            document.getElementById('progressBar').style.width = `${percent}%`;
-        }
-
-        function toggleItem(index) {
-            checkedStatus[index] = !checkedStatus[index];
-            localStorage.setItem('kanto_checklist', JSON.stringify(checkedStatus));
-            renderChecklist();
-        }
-
-        renderChecklist();
-    </script>
-</body>
-</html>
+        
