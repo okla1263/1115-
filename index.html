@@ -37,4 +37,245 @@
         /* 頂端標題與分頁導覽列 */
         header {
             position: fixed;
-            top: 
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--paper);
+            border-bottom: var(--border);
+            padding: 10px 15px;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            justify-content: center;
+            padding-bottom: 4px;
+        }
+
+        .tab-btn {
+            background: #fff;
+            border: var(--border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px var(--ink);
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background: var(--coral);
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 600px;
+            margin: 115px auto 20px auto;
+            padding: 0 15px;
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .card {
+            background: #fff;
+            border: var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* 隨身清單與進度條樣式 */
+        .progress-bar-container {
+            background: #eee;
+            border: 2px solid var(--ink);
+            border-radius: 10px;
+            height: 16px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-bar-fill {
+            background: var(--green);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 2px dashed #eee;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--ink);
+            cursor: pointer;
+        }
+
+        .checklist-item.checked span {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="main-title">🌸 春賞關東·花樣五日遊</div>
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab('home')">首頁</button>
+            <button class="tab-btn" onclick="switchTab('flight')">航班</button>
+            <button class="tab-btn" onclick="switchTab('itinerary')">行程</button>
+            <button class="tab-btn" onclick="switchTab('checklist')">隨身清單</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 首頁 -->
+        <section id="home" class="page-section active">
+            <div class="card" style="background: var(--yellow); text-align: center;">
+                <h2 style="font-size: 22px; margin-bottom: 10px;">歡迎來到關東花藝之旅</h2>
+                <p style="font-size: 14px; line-height: 1.6;">結合浪漫粉蝶花海、百年紫藤與富士山美景的經典五日行，享受悠閒美好的假期吧！</p>
+            </div>
+            <div class="card">
+                <h3 style="font-size: 18px; margin-bottom: 10px;">📌 快速導覽</h3>
+                <p style="font-size: 14px; line-height: 1.8;">
+                    • 點擊上方 **航班** 查看去回程班機資訊。<br>
+                    • 點擊上方 **行程** 查看每日詳細景點與住宿。<br>
+                    • 點擊上方 **隨身清單** 勾選行李與待辦事項。
+                </p>
+            </div>
+        </section>
+
+        <!-- 航班 -->
+        <section id="flight" class="page-section">
+            <div class="card" style="background: var(--blue);">
+                <h2 style="font-size: 18px; margin-bottom: 10px;">✈️ 去程航班</h2>
+                <p style="font-size: 14px; line-height: 1.6;">日期：Day 1<br>航班：標準直飛班機<br>起飛與抵達時間請對照機票確認單。</p>
+            </div>
+            <div class="card" style="background: var(--purple);">
+                <h2 style="font-size: 18px; margin-bottom: 10px;">✈️ 回程航班</h2>
+                <p style="font-size: 14px; line-height: 1.6;">日期：Day 5<br>航班：標準直飛班機<br>快樂賦歸，帶著滿滿的回憶返台。</p>
+            </div>
+        </section>
+
+        <!-- 行程 -->
+        <section id="itinerary" class="page-section">
+            <div class="card">
+                <h2 style="font-size: 18px; margin-bottom: 8px;">🗓️ 五日精華行程摘要</h2>
+                <p style="font-size: 14px; line-height: 1.8;">
+                    <strong>Day 1：</strong> 抵達關東 ➔ 水樂園／市區散策 ➔ 宿水都飯店<br>
+                    <strong>Day 2：</strong> 經典粉蝶花海／常陸海濱公園 ➔ 溫泉飯店<br>
+                    <strong>Day 3：</strong> 足利紫藤花物語 ➔ 東京市區採買<br>
+                    <strong>Day 4：</strong> 淺草雷門 ➔ 晴空塔商圈 ➔ 宿淺草 Vessel 飯店<br>
+                    <strong>Day 5：</strong> 伴手禮最後衝刺 ➔ 搭機返台
+                </p>
+            </div>
+        </section>
+
+        <!-- 隨身清單 -->
+        <section id="checklist" class="page-section">
+            <div class="card">
+                <h2 style="font-size: 18px; margin-bottom: 4px;">🎒 旅人隨身清單</h2>
+                <p style="font-size: 12px; color: #666; margin-bottom: 12px;">勾選項目會自動儲存在您的手機中</p>
+                
+                <div style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 700;">
+                        <span>完成進度</span>
+                        <span id="progressText">0 / 8 (0%)</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <div id="checklistContainer">
+                    <!-- 動態產生清單 -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 分頁切換
+        function switchTab(tabId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // 清單項目資料
+        const items = [
+            "護照與日幣現金 / 信用卡",
+            "網卡 / 漫遊設定",
+            "常用個人常備藥品",
+            "保暖外套與好走的布鞋",
+            "行動電源與充電線",
+            "折疊雨傘",
+            "個人換洗衣物與盥洗包",
+            "空行李箱（預留戰利品空間）"
+        ];
+
+        let checkedStatus = JSON.parse(localStorage.getItem('kanto_checklist') || '{}');
+
+        function renderChecklist() {
+            const container = document.getElementById('checklistContainer');
+            let completedCount = 0;
+
+            container.innerHTML = items.map((item, index) => {
+                const isChecked = !!checkedStatus[index];
+                if (isChecked) completedCount++;
+                return `
+                    <label class="checklist-item ${isChecked ? 'checked' : ''}">
+                        <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleItem(${index})">
+                        <span>${item}</span>
+                    </label>
+                `;
+            }).join('');
+
+            const percent = Math.round((completedCount / items.length) * 100);
+            document.getElementById('progressText').innerText = `${completedCount} / ${items.length} (${percent}%)`;
+            document.getElementById('progressBar').style.width = `${percent}%`;
+        }
+
+        function toggleItem(index) {
+            checkedStatus[index] = !checkedStatus[index];
+            localStorage.setItem('kanto_checklist', JSON.stringify(checkedStatus));
+            renderChecklist();
+        }
+
+        renderChecklist();
+    </script>
+</body>
+</html>
